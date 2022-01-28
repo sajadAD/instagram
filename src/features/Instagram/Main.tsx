@@ -45,7 +45,7 @@ const Main = () => {
             </Grid>
             <Grid container justifyContent='center' alignItems='center'>
               <img
-                width='98%'
+                width='100%'
                 src={instapost}
                 alt="post"
               />
