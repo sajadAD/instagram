@@ -1,11 +1,16 @@
 import { Avatar, Button, Grid, Paper, Typography } from "@mui/material";
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ShareRoundedIcon from '@mui/icons-material/ShareRounded';
-import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
-import BookmarkBorderRoundedIcon from '@mui/icons-material/BookmarkBorderRounded';
-import instapost from '../../instagram-image.jpeg'
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
+import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
+import BookmarkBorderRoundedIcon from "@mui/icons-material/BookmarkBorderRounded";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import instapost from "../../instagram-image.jpeg";
+import { useState } from "react";
 const Main = () => {
+  const [like, setLike] = useState<boolean>(true);
+  const [bookmark, setBookmark] = useState<boolean>(false);
+  const [follow, setFoloow] = useState<boolean>(true);
   return (
     <>
       <Grid
@@ -38,21 +43,71 @@ const Main = () => {
                 </Grid>
               </Grid>
               <Grid item>
-                <Button variant="outlined" size="small">
-                  Follow
-                </Button>
+                {follow ? (
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    onClick={() => {
+                      setFoloow(!follow);
+                    }}
+                  >
+                    Follow
+                  </Button>
+                ) : (
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={() => {
+                      setFoloow(!follow);
+                    }}
+                  >
+                    Follow
+                  </Button>
+                )}
               </Grid>
             </Grid>
-            <Grid container justifyContent='center' alignItems='center'>
-              <img
-                width='100%'
-                src={instapost}
-                alt="post"
-              />
+            <Grid container justifyContent="center" alignItems="center">
+              <img width="100%" src={instapost} alt="post" />
             </Grid>
-            <Grid container justifyContent='space-between' alignItems='center' padding={3}>
-                <Grid item ><FavoriteIcon color="error"/><ChatBubbleOutlineRoundedIcon sx={{margin:"0 5px"}}/><ShareRoundedIcon /></Grid>
-                <Grid item><BookmarkBorderRoundedIcon /></Grid>
+            <Grid
+              container
+              justifyContent="space-between"
+              alignItems="center"
+              padding={3}
+            >
+              <Grid item>
+                {like ? (
+                  <FavoriteIcon
+                    color="error"
+                    onClick={() => {
+                      setLike(!like);
+                    }}
+                  />
+                ) : (
+                  <FavoriteBorderIcon
+                    onClick={() => {
+                      setLike(!like);
+                    }}
+                  />
+                )}
+                <ChatBubbleOutlineRoundedIcon sx={{ margin: "0 5px" }} />
+                <ShareRoundedIcon />
+              </Grid>
+              <Grid item>
+                {bookmark ? (
+                  <BookmarkBorderRoundedIcon
+                    onClick={() => {
+                      setBookmark(!bookmark);
+                    }}
+                  />
+                ) : (
+                  <BookmarkIcon
+                    onClick={() => {
+                      setBookmark(!bookmark);
+                    }}
+                  />
+                )}
+              </Grid>
             </Grid>
           </Grid>
         </Paper>
